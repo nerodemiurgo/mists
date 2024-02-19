@@ -1,0 +1,30 @@
+services:
+    lukewcs.whowashere.listener:
+        class: lukewcs\whowashere\event\listener
+        arguments:
+            - '@lukewcs.whowashere.core'
+        tags:
+            - { name: event.listener }
+    lukewcs.whowashere.core:
+        class: lukewcs\whowashere\core\who_was_here
+        arguments:
+            - '@template'
+            - '@config'
+            - '@user'
+            - '@auth'
+            - '@cache.driver'
+            - '@dbal.conn'
+            - '@dispatcher'
+            - '%core.table_prefix%'
+            - '%core.php_ext%'
+            - '@language'
+    lukewcs.whowashere.controller.acp:
+        class: lukewcs\whowashere\controller\acp_who_was_here_controller
+        arguments:
+            - '@language'
+            - '@template'
+            - '@request'
+            - '@config'
+            - '@user'
+            - '@cache.driver'
+            - '@ext.manager' 

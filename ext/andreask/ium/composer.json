@@ -1,0 +1,32 @@
+{
+    "name": "andreask/ium",
+    "type": "phpbb-extension",
+    "description": "PHPBB Inactive User Manager/Reminder",
+    "version": "1.1.10",
+    "time": "2016-10-07",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Andreas Kourtidis",
+            "email": "akourtidis@gmail.com",
+            "role": "Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "composer/installers": "~1.0.0",
+        "phpbb/phpbb": ">=3.2.0"
+    },
+    "extra": {
+        "display-name": "PHPBB Inactive User Manager/Reminder",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.2.0"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/phpbb_inactive_user_manager_reminder",
+            "filename": "version_check",
+            "ssl": true
+        }
+    }
+}

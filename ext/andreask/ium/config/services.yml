@@ -1,0 +1,65 @@
+imports:
+    - { resource: event.yml }
+services:
+    andreask.ium.cron.send_reminder:
+        class: andreask\ium\cron\send_reminder
+        arguments:
+            - '@config'
+            - '@user'
+            - '@andreask.ium.classes.reminder'
+            - '@andreask.ium.classes.delete_user'
+        calls:
+            - [set_name, [cron.task.ium_send_reminder]]
+        tags:
+            - { name: cron.task }
+    andreask.ium.classes.reminder:
+        class: andreask\ium\classes\reminder
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@user'
+            - '@user_loader'
+            - '@log'
+            - '@andreask.ium.classes.top_topics'
+            - '@andreask.ium.classes.ignore_user'
+            - '@request'
+            - '@routing.helper'
+            - '%core.table_prefix%'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+    andreask.ium.classes.top_topics:
+        class: andreask\ium\classes\top_topics
+        arguments:
+            - '@config'
+            - '@config_text'
+            - '@auth'
+            - '@dbal.conn'
+    andreask.ium.classes.delete_user:
+        class: andreask\ium\classes\delete_user
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@user'
+            - '@log'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+    andreask.ium.classes.ignore_user:
+        class: andreask\ium\classes\ignore_user
+        arguments:
+            - '@user'
+            - '@dbal.conn'
+            - '@config_text'
+            - '@auth'
+            - '@log'
+    andreask.ium.controller:
+        class: andreask\ium\controller\main
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@user'
+            - '@request'
+            - '@template'
+            - '@andreask.ium.classes.delete_user'
+            - '@service_container'
+            - '%core.root_path%'
+            - '%core.php_ext%'

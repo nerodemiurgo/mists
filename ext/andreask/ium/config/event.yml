@@ -1,0 +1,13 @@
+services:
+    andreask.ium.listener:
+        class: andreask\ium\event\listener
+        arguments:
+            - '@andreask.ium.classes.reminder'
+            - '@andreask.ium.classes.ignore_user'
+            - '@user'
+            - '@config'
+            - '@config_text'
+            - '@auth'
+            - '@log'
+        tags:
+            - { name: event.listener }
