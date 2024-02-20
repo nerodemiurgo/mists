@@ -11,9 +11,13 @@ jobs:
   steps:
     - uses: action/checkout@v2
     # Setup key
-    - run: set -eu
-    - run: mkdir "$HOME/.ssh"
-    - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
-    - run: chmod 600 "$HOME/.ssh/key""
+    - name: set -eu
+      run: set -eu
+    - name: mkdir
+      run: mkdir "$HOME/.ssh"
+    - name: echo key
+      run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+    - name: chmod
+      run: chmod 600 "$HOME/.ssh/key""
     # Deploy
     - run: rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . root@92.63.193.32:/home/demiurgo/sites/mists.nerodemiurgo.ru
