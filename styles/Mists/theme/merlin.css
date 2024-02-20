@@ -81,7 +81,24 @@ body.content_block_header_stripe li.header:before, .fancy_panel:before, .sidebar
 
 .body-layout-Fluid #inner-wrap {
 	width: 95%;
+	max-width: 1400px;
 	margin: 0 auto;
+}
+body.navbar_i_header .site-description {
+    margin: 120px auto 120px;
+}
+
+body.navbar_i_header .site-description {
+    margin: 120px auto 120px;
+}
+
+.navbar {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.forum_header {
+    background: #101216;
 }
 
 /* Sidebar Structure
